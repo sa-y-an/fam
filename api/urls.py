@@ -1,8 +1,8 @@
-from django import views
-from django.contrib import admin
-from django.urls import path, include
-from .views import home
+from .views import ParentList, ChildrenList
+from rest_framework.routers import SimpleRouter
+app_name = 'api'
 
-urlpatterns = [
-    path('', home)
-]
+router = SimpleRouter()
+router.register('parent', ParentList, basename='parent')
+router.register('child', ChildrenList, basename='child')
+urlpatterns = router.urls
